@@ -34,6 +34,6 @@ yay -S hyprland waybar kitty rofi hyprpaper hypridle hyprlock brightnessctl play
 ### Changing Wallpaper
 Place your wallpapers in the `~/Wallpaper` directory and update `hyprpaper.conf` accordingly.
 
-## 💻 NvChad Setup
+## NvChad Setup
 
 The Neovim configuration is based on NvChad.
