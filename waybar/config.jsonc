@@ -18,7 +18,7 @@
 
 	"modules-left": ["custom/padd","custom/l_end","cpu","memory","custom/r_end","custom/l_end","hyprland/workspaces","custom/r_end","custom/padd"],
 	"modules-center": ["custom/padd","custom/l_end","hyprland/window","custom/r_end","custom/padd"],
-	"modules-right": ["custom/padd","custom/l_end","backlight","network","pulseaudio","pulseaudio#microphone","custom/r_end","custom/l_end","privacy","tray","battery","custom/r_end","custom/l_end","idle_inhibitor","clock","custom/r_end","custom/l_end","custom/wallchange","custom/cliphist","custom/power","custom/r_end","custom/padd"],
+	"modules-right": ["custom/padd","custom/l_end","backlight","custom/spotify","pulseaudio","pulseaudio#microphone","custom/r_end","custom/l_end","privacy","tray","battery","custom/r_end","custom/l_end","idle_inhibitor","clock","custom/r_end","custom/l_end","custom/wallchange","custom/cliphist","custom/power","custom/r_end","custom/padd"],
 
 
 // sourced from modules based on config.ctl //
@@ -112,14 +112,13 @@
         "min-length": 6
     },
 
-    "network": {
-        "tooltip": true,
-        "rotate": 0,
-        "tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
-        "format-disconnected": "󰖪",
-        "tooltip-format-disconnected": "Disconnected",
-        "format": "<span foreground='#99ffdd'> {bandwidthDownBytes}</span> <span foreground='#ffcc66'> {bandwidthUpBytes}</span>",
-        "interval": 2
+    "custom/spotify": {
+        "exec": "/usr/bin/python3 $HOME/.config/hypr/scripts/mediaplayer.py --player spotify",
+        "format": "{}  ",
+        "return-type": "json",
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous"
     },
 
     "pulseaudio": {
