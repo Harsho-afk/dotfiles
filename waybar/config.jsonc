@@ -176,7 +176,8 @@
     "tray": {
         "icon-size": 16,
         "rotate": 0,
-        "spacing": 5
+        "spacing": 5,
+        "show-passive-items": true
     },
 
     "battery": {
