@@ -13,7 +13,7 @@ local servers = {
     "gopls",
     "svelte",
     "cmake",
-    "rust_analyzer"
+    "rust_analyzer",
 }
 local nvlsp = require "nvchad.configs.lspconfig"
 
