@@ -1,3 +1,5 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -28,6 +30,8 @@ vim.opt.expandtab = true  -- Convert tabs to spaces
 vim.opt.smartindent = true -- Smart autoindenting when starting a new line
 
 vim.opt.clipboard = "unnamedplus"
+
+vim.opt.termguicolors = true
 
 -- Setup lazy.nvim
 require("lazy").setup({
