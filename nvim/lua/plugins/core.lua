@@ -32,7 +32,8 @@ return {
                     group_empty = true,
                 },
                 filters = {
-                    dotfiles = false, -- show dotfiles
+                    dotfiles = true,
+                    git_ignored = true,
                 },
             }
 
@@ -50,8 +51,15 @@ return {
                         enabled = true,
                         delay = 200,
                         reveal = {"close"}
+                    },
+                    offsets = {
+                        {
+                            filetype = "NvimTree",
+                            separator = false,
+                            highlight = "Directory",
+                        }
                     }
-                }
+                },
             }
             vim.keymap.set("n", "<C-Tab>", "<Cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true })
             vim.keymap.set("n", "<C-S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true })
@@ -66,8 +74,9 @@ return {
         config = function()
             require('lualine').setup {
                 options = {
-                    icons_enabled = true,
+                    icons_enabled = false,
                     theme = 'auto',
+                    globalstatus = true,
                     component_separators = { left = '', right = ''},
                     section_separators = { left = '', right = ''},
                     disabled_filetypes = {
@@ -77,7 +86,6 @@ return {
                     ignore_focus = {},
                     always_divide_middle = true,
                     always_show_tabline = true,
-                    globalstatus = false,
                     refresh = {
                         statusline = 1000,
                         tabline = 1000,

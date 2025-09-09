@@ -33,6 +33,22 @@ vim.opt.clipboard = "unnamedplus"
 
 vim.opt.termguicolors = true
 
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    require("nvim-tree.api").tree.open()
+  end
+})
+
+vim.keymap.set("n", "<leader>h", function()
+  local api = require("nvim-tree.api")
+  api.tree.toggle_hidden_filter()
+end, { noremap = true, silent = true, desc = "Toggle hidden files in NvimTree" })
+
+vim.keymap.set("n", "<C-s>", "<Cmd>w<CR>", { noremap = true, silent = true })
+
+
+
+
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
