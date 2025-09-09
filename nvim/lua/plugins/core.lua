@@ -61,10 +61,11 @@ return {
                     }
                 },
             }
-            vim.keymap.set("n", "<C-Tab>", "<Cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true })
-            vim.keymap.set("n", "<C-S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true })
-            vim.keymap.set("n", "<C-S-Right>", "<Cmd>BufferLineMoveNext<CR>", { noremap = true, silent = true })
-            vim.keymap.set("n", "<C-S-Left>", "<Cmd>BufferLineMovePrev<CR>", { noremap = true, silent = true })
+
+            vim.keymap.set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true })
+            vim.keymap.set("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true })
+            vim.keymap.set("n", "<S-Right>", "<Cmd>BufferLineMoveNext<CR>", { noremap = true, silent = true })
+            vim.keymap.set("n", "<S-Left>", "<Cmd>BufferLineMovePrev<CR>", { noremap = true, silent = true })
             vim.keymap.set("n", "<leader>b", "<Cmd>bdelete<CR>", { noremap = true, silent = true })
         end,
     },
@@ -127,5 +128,9 @@ return {
                 extensions = {}
             }
         end,
+    },
+    {
+        'nvim-telescope/telescope.nvim', tag = '0.1.8',
+        dependencies = { 'nvim-lua/plenary.nvim' }
     }
 }

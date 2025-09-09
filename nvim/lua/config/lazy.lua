@@ -45,9 +45,9 @@ vim.keymap.set("n", "<leader>h", function()
 end, { noremap = true, silent = true, desc = "Toggle hidden files in NvimTree" })
 
 vim.keymap.set("n", "<C-s>", "<Cmd>w<CR>", { noremap = true, silent = true })
+vim.keymap.set("i", "<C-s>", "<Esc><Cmd>w<CR>a", { noremap = true, silent = true })
 
-
-
+vim.keymap.set("n", "<C-c>", ":%y+<CR>", { noremap = true, silent = true })
 
 -- Setup lazy.nvim
 require("lazy").setup({
