@@ -38,6 +38,10 @@ return {
             }
 
             vim.keymap.set("n","<C-n>",":NvimTreeToggle<CR>",{ noremap = true, silent = true })
+            vim.keymap.set("n", "<leader>h", function()
+                local api = require("nvim-tree.api")
+                api.tree.toggle_hidden_filter()
+            end, { noremap = true, silent = true, desc = "Toggle hidden files in NvimTree" })
         end,
     },
     {
