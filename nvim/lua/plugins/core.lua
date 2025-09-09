@@ -66,7 +66,21 @@ return {
             vim.keymap.set("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true })
             vim.keymap.set("n", "<S-Right>", "<Cmd>BufferLineMoveNext<CR>", { noremap = true, silent = true })
             vim.keymap.set("n", "<S-Left>", "<Cmd>BufferLineMovePrev<CR>", { noremap = true, silent = true })
-            vim.keymap.set("n", "<leader>b", "<Cmd>bdelete<CR>", { noremap = true, silent = true })
+            vim.keymap.set("n", "<leader>b", function()
+              local bufnr = vim.api.nvim_get_current_buf()
+              local buffers = vim.fn.getbufinfo({ buflisted = 1 })
+              if #buffers > 1 then
+                vim.cmd("bnext")
+                if bufnr == vim.api.nvim_get_current_buf() then
+                  vim.cmd("bprevious")
+                end
+              else
+                vim.cmd("enew")
+              end
+              if vim.api.nvim_buf_is_valid(bufnr) then
+                vim.cmd("bdelete " .. bufnr)
+              end
+            end, { noremap = true, silent = true })
         end,
     },
     {
