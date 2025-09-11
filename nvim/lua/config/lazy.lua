@@ -38,6 +38,9 @@ vim.keymap.set("i", "<C-s>", "<Esc><Cmd>w<CR>a", { noremap = true, silent = true
 
 vim.keymap.set("n", "<C-c>", ":%y+<CR>", { noremap = true, silent = true })
 
+vim.opt.number = true
+vim.opt.relativenumber = true
+
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
