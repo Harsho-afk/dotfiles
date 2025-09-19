@@ -46,7 +46,9 @@ vim.keymap.set("n", "<C-p>", "<Cmd>Lazy sync<CR>", { noremap = true, silent = tr
 
 vim.keymap.set("n", "<C-w><C-a>", "<Cmd>qa<CR>", { noremap = true, silent = true, desc = "Quit All Windows" })
 
-vim.opt.whichwrap:append "<>hl"
+vim.keymap.set("n", "<C-h>", "<Cmd>noh<CR>", { noremap = true, silent = true, desc = "Clear highlight"})
+
+vim.opt.whichwrap:append "<,>,[,],h,l"
 
 -- Setup lazy.nvim
 require("lazy").setup({

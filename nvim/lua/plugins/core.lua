@@ -46,9 +46,9 @@ return {
         end,
     },
     {
-        'akinsho/bufferline.nvim',
+        "akinsho/bufferline.nvim",
         version = "*",
-        dependencies = 'nvim-tree/nvim-web-devicons',
+        dependencies = "nvim-tree/nvim-web-devicons",
         config = function()
             require("bufferline").setup {
                 options = {
@@ -93,28 +93,28 @@ return {
         end,
     },
     {
-        'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
             local function get_lsp_server_name()
                 local lsp_clients = vim.lsp.get_clients({ bufnr = 0 })
                 if not next(lsp_clients) then
-                    return ''
+                    return ""
                 end
 
                 local client_names = {}
                 for _, client in ipairs(lsp_clients) do
                     table.insert(client_names, client.name)
                 end
-                return ' ' .. table.concat(client_names, ', ') .. ' ' --  is the devicon for a server
+                return " " .. table.concat(client_names, ", ") .. " " --  is the devicon for a server
             end
-            require('lualine').setup {
+            require("lualine").setup {
                 options = {
                     icons_enabled = false,
-                    theme = 'auto',
+                    theme = "auto",
                     globalstatus = true,
-                    component_separators = { left = '', right = '' },
-                    section_separators = { left = '', right = '' },
+                    component_separators = { left = "", right = "" },
+                    section_separators = { left = "", right = "" },
                     disabled_filetypes = {
                         statusline = { "NvimTree" },
                         winbar = { "NvimTree" },
@@ -128,32 +128,32 @@ return {
                         winbar = 1000,
                         refresh_time = 16, -- ~60fps
                         events = {
-                            'WinEnter',
-                            'BufEnter',
-                            'BufWritePost',
-                            'SessionLoadPost',
-                            'FileChangedShellPost',
-                            'VimResized',
-                            'Filetype',
-                            'CursorMoved',
-                            'CursorMovedI',
-                            'ModeChanged',
+                            "WinEnter",
+                            "BufEnter",
+                            "BufWritePost",
+                            "SessionLoadPost",
+                            "FileChangedShellPost",
+                            "VimResized",
+                            "Filetype",
+                            "CursorMoved",
+                            "CursorMovedI",
+                            "ModeChanged",
                         },
                     }
                 },
                 sections = {
-                    lualine_a = { 'mode' },
-                    lualine_b = { 'branch', 'diff', 'diagnostics' },
-                    lualine_c = { 'filename' },
-                    lualine_x = { get_lsp_server_name, 'encoding', 'fileformat', 'filetype' },
-                    lualine_y = { 'progress' },
-                    lualine_z = { 'location' }
+                    lualine_a = { "mode" },
+                    lualine_b = { "branch", "diff", "diagnostics" },
+                    lualine_c = { "filename" },
+                    lualine_x = { get_lsp_server_name, "encoding", "fileformat", "filetype" },
+                    lualine_y = { "progress" },
+                    lualine_z = { "location" }
                 },
                 inactive_sections = {
                     lualine_a = {},
                     lualine_b = {},
-                    lualine_c = { 'filename' },
-                    lualine_x = { 'location' },
+                    lualine_c = { "filename" },
+                    lualine_x = { "location" },
                     lualine_y = {},
                     lualine_z = {}
                 },
@@ -165,14 +165,14 @@ return {
         end,
     },
     {
-        'nvim-telescope/telescope.nvim',
-        tag = '0.1.8',
-        dependencies = { 'nvim-lua/plenary.nvim' },
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.8",
+        dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
             local telescope = require("telescope")
             local actions = require("telescope.actions")
             local builtin = require("telescope.builtin")
-            require('telescope').setup {
+            require("telescope").setup {
                 defaults = {
                     mappings = {
                         i = {
@@ -186,14 +186,29 @@ return {
                 }
             }
 
-            vim.keymap.set('n', '<leader>ff', builtin.find_files,
-                { noremap = true, silent = true, desc = 'Telescope find files' })
-            vim.keymap.set('n', '<leader>fg', builtin.live_grep,
-                { noremap = true, silent = true, desc = 'Telescope live grep' })
-            vim.keymap.set('n', '<leader>fb', builtin.buffers,
-                { noremap = true, silent = true, desc = 'Telescope buffers' })
-            vim.keymap.set('n', '<leader>fh', builtin.help_tags,
-                { noremap = true, silent = true, desc = 'Telescope help tags' })
+            vim.keymap.set("n", "<leader>ff", builtin.find_files,
+                { noremap = true, silent = true, desc = "Telescope find files" })
+            vim.keymap.set("n", "<leader>fg", builtin.live_grep,
+                { noremap = true, silent = true, desc = "Telescope live grep" })
+            vim.keymap.set("n", "<leader>fb", builtin.buffers,
+                { noremap = true, silent = true, desc = "Telescope buffers" })
+            vim.keymap.set("n", "<leader>fh", builtin.help_tags,
+                { noremap = true, silent = true, desc = "Telescope help tags" })
         end,
+    },
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        opts = {
+        },
+        keys = {
+            {
+                "<leader>?",
+                function()
+                    require("which-key").show({ global = false })
+                end,
+                desc = "Buffer Local Keymaps (which-key)",
+            },
+        },
     },
 }

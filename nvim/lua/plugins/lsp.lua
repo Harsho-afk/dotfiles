@@ -14,39 +14,56 @@ return {
             "rafamadriz/friendly-snippets",
         },
         config = function()
-            local lspconfig = require("lspconfig")
             local mason = require("mason")
             local mason_lspconfig = require("mason-lspconfig")
             local cmp = require("cmp")
             local luasnip = require("luasnip")
 
-            vim.lsp.config('lua_ls', {
+            vim.lsp.config("clangd", {
+                on_attach = function(client, bufnr)
+                    if client.server_capabilities.documentFormattingProvider then
+                        vim.api.nvim_create_autocmd("BufWritePre", {
+                            group = vim.api.nvim_create_augroup("LspFormat." .. bufnr, {}),
+                            buffer = bufnr,
+                            callback = function()
+                                vim.lsp.buf.format({
+                                    bufnr = bufnr,
+                                    options = {
+                                        tabSize = 4,
+                                        insertSpaces = true,
+                                    },
+                                })
+                            end,
+                        })
+                    end
+                end,
+            })
+
+            vim.lsp.config("lua_ls", {
                 settings = {
                     Lua = {
                         runtime = {
-                            version = 'LuaJIT',
+                            version = "LuaJIT",
                         },
                         diagnostics = {
                             globals = {
-                                'vim',
-                                'require',
+                                "vim",
+                                "require",
                             },
                             workspace = {
                                 library = vim.api.nvim_get_runtime_file("", true),
                                 checkThirdParty = false,
                             },
                             telemetry = { enable = false },
-                            format = {
-                                enable = true,
-                            }
-
+                            format = { enable = true }
                         },
                     },
                 },
             })
+
             mason.setup()
             mason_lspconfig.setup({
-                ensure_installed = { "lua_ls", "pyright", "rust_analyzer", "clangd" },
+                ensure_installed = { "lua_ls", "pyright", "rust_analyzer", "clangd", "jdtls" },
             })
 
             -- Snippets setup
@@ -105,6 +122,35 @@ return {
             vim.keymap.set("n", "<leader>f", function()
                 vim.lsp.buf.format { async = true }
             end, { noremap = true, silent = true, desc = "Format Code" })
+            vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float,
+                { noremap = true, silent = true, desc = "Show Line Diagnostics" })
+            vim.keymap.set("n", "]d", vim.diagnostic.goto_next,
+                { noremap = true, silent = true, desc = "Next Diagnostic" })
+            vim.keymap.set("n", "[d", vim.diagnostic.goto_prev,
+                { noremap = true, silent = true, desc = "Previous Diagnostic" })
+            vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist,
+                { noremap = true, silent = true, desc = "Diagnostics to Quickfix" })
+        end,
+    },
+    {
+        "stevearc/conform.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        cmd = { "ConformInfo" },
+        config = function()
+            require("conform").setup({
+                format_on_save = nil,
+                formatters_by_ft = {
+                    python = { "black" },
+                    javascript = { "prettier" },
+                    typescript = { "prettier" },
+                    json = { "prettier" },
+                    sh = { "shfmt" },
+                },
+            })
+
+            vim.keymap.set("n", "<leader>f", function()
+                require("conform").format({ async = true, lsp_fallback = true })
+            end, { desc = "Format code" })
         end,
     },
 }
