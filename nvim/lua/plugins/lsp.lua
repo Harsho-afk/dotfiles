@@ -20,7 +20,7 @@ return {
 
             require("mason").setup()
             mason_lspconfig.setup {
-                ensure_installed = { "lua_ls", "pyright", }, -- add more servers if needed
+                ensure_installed = { "lua_ls", "pyright", },
                 automatic_installation = true,
             }
 
@@ -37,7 +37,7 @@ return {
                 },
                 mapping = cmp.mapping.preset.insert({
                     ["<C-Space>"] = cmp.mapping.complete(),
-                    ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Enter confirms
+                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
                     ["<Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_next_item()
@@ -88,8 +88,7 @@ return {
                     capabilities = capabilities,
                 }
             end
-            lspconfig.lua_ls.setup({
-                capabilities = capabilities,
+            vim.lsp.config("lua_ls", {
                 settings = {
                     Lua = {
                         format = {
