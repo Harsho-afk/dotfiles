@@ -12,10 +12,14 @@ return {
         config = function()
             require("diffview").setup()
             -- Diffview keymaps
-                vim.keymap.set("n", "<leader>do", "<cmd>DiffviewOpen<CR>", { desc = "Open Diffview" })
-                vim.keymap.set("n", "<leader>dc", "<cmd>DiffviewClose<CR>", { desc = "Close Diffview" })
-                vim.keymap.set("n", "<leader>dh", "<cmd>DiffviewFileHistory<CR>", { desc = "File history" })
-                vim.keymap.set("n", "<leader>dr", "<cmd>DiffviewRefresh<CR>", { desc = "Refresh Diffview" })
+            vim.keymap.set("n", "<leader>do", "<cmd>DiffviewOpen<CR>",
+                { noremap = true, silent = true, desc = "Open Diffview" })
+            vim.keymap.set("n", "<leader>dc", "<cmd>DiffviewClose<CR>",
+                { noremap = true, silent = true, desc = "Close Diffview" })
+            vim.keymap.set("n", "<leader>dh", "<cmd>DiffviewFileHistory<CR>",
+                { noremap = true, silent = true, desc = "File history" })
+            vim.keymap.set("n", "<leader>dr", "<cmd>DiffviewRefresh<CR>",
+                { noremap = true, silent = true, desc = "Refresh Diffview" })
         end,
     }
 }

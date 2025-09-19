@@ -21,32 +21,32 @@ return {
             local luasnip = require("luasnip")
 
             vim.lsp.config('lua_ls', {
-      settings = {
-        Lua = {
-          runtime = {
-            version = 'LuaJIT',
-          },
-          diagnostics = {
-            globals = {
-              'vim',
-              'require',
-            },
+                settings = {
+                    Lua = {
+                        runtime = {
+                            version = 'LuaJIT',
+                        },
+                        diagnostics = {
+                            globals = {
+                                'vim',
+                                'require',
+                            },
                             workspace = {
-                                    library = vim.api.nvim_get_runtime_file("", true),
-                                    checkThirdParty = false,
-                                },
-                                telemetry = { enable = false },
+                                library = vim.api.nvim_get_runtime_file("", true),
+                                checkThirdParty = false,
+                            },
+                            telemetry = { enable = false },
                             format = {
-                                    enable = true,
+                                enable = true,
                             }
 
-          },
-        },
-      },
-    })
+                        },
+                    },
+                },
+            })
             mason.setup()
             mason_lspconfig.setup({
-                ensure_installed = { "lua_ls", "pyright", "rust_analyzer" },
+                ensure_installed = { "lua_ls", "pyright", "rust_analyzer", "clangd" },
             })
 
             -- Snippets setup
@@ -89,22 +89,22 @@ return {
                 }),
             })
 
-            local on_attach = function(client, bufnr)
-                local opts = { buffer = bufnr, noremap = true, silent = true }
-                vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-                vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-                vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-                vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-                vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-                vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-                vim.keymap.set("n", "<leader>f", function()
-                    vim.lsp.buf.format { async = true }
-                end, opts)
-            end
-
-            -- LSP capabilities for nvim-cmp
-            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+            vim.keymap.set("n", "gd", vim.lsp.buf.definition,
+                { noremap = true, silent = true, desc = "Go to Definition" })
+            vim.keymap.set("n", "gD", vim.lsp.buf.declaration,
+                { noremap = true, silent = true, desc = "Go to Declaration" })
+            vim.keymap.set("n", "gi", vim.lsp.buf.implementation,
+                { noremap = true, silent = true, desc = "Go to Implementation" })
+            vim.keymap.set("n", "gr", vim.lsp.buf.references,
+                { noremap = true, silent = true, desc = "Go to References" })
+            vim.keymap.set("n", "K", vim.lsp.buf.hover,
+                { noremap = true, silent = true, desc = "Show Hover Information" })
+            vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { noremap = true, silent = true, desc = "Rename" })
+            vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action,
+                { noremap = true, silent = true, desc = "Code Action" })
+            vim.keymap.set("n", "<leader>f", function()
+                vim.lsp.buf.format { async = true }
+            end, { noremap = true, silent = true, desc = "Format Code" })
         end,
     },
 }
