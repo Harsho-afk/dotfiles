@@ -1,5 +1,6 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -17,17 +18,14 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Make sure to setup `mapleader` and `maplocalleader` before
--- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- Indentation settings
-vim.opt.tabstop = 4       -- Number of spaces a <Tab> counts for
-vim.opt.shiftwidth = 4    -- Number of spaces used for each step of (auto)indent
-vim.opt.expandtab = true  -- Convert tabs to spaces
-vim.opt.smartindent = true -- Smart autoindenting when starting a new line
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
 
 vim.opt.clipboard = "unnamedplus"
 
@@ -40,15 +38,21 @@ vim.keymap.set("n", "<C-c>", ":%y+<CR>", { noremap = true, silent = true })
 
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.keymap.set("n", "<leader>n", function()
+    vim.opt.relativenumber = not vim.opt.relativenumber:get()
+end, { desc = "Toggle relative line numbers" })
+
+vim.keymap.set("n", "<C-p>", "<Cmd>Lazy sync<CR>", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<C-w><C-a>", "<Cmd>qa<CR>", { noremap = true, silent = true })
+
+vim.opt.whichwrap:append "<>hl"
 
 -- Setup lazy.nvim
 require("lazy").setup({
-  spec = {
-    { import = "plugins" },-- import your plugins
-  },
-  -- Configure any other settings here. See the documentation for more details.
-  -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "kanagawa" } },
-  -- automatically check for plugin updates
-  checker = { enabled = true },
+    spec = {
+        { import = "plugins" },
+    },
+    install = { colorscheme = { "kanagawa" } },
+    checker = { enabled = true },
 })
