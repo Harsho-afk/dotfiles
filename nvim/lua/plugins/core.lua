@@ -4,7 +4,7 @@ return {
         branch = "master",
         lazy = false,
         build = ":TSUpdate",
-        config = function ()
+        config = function()
             local configs = require("nvim-treesitter.configs")
 
             configs.setup({
@@ -37,7 +37,7 @@ return {
                 },
             }
 
-            vim.keymap.set("n","<C-n>",":NvimTreeToggle<CR>",{ noremap = true, silent = true })
+            vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
             vim.keymap.set("n", "<leader>h", function()
                 local api = require("nvim-tree.api")
                 api.tree.toggle_hidden_filter()
@@ -45,8 +45,8 @@ return {
         end,
     },
     {
-        'akinsho/bufferline.nvim', 
-        version = "*", 
+        'akinsho/bufferline.nvim',
+        version = "*",
         dependencies = 'nvim-tree/nvim-web-devicons',
         config = function()
             require("bufferline").setup {
@@ -54,7 +54,7 @@ return {
                     hover = {
                         enabled = true,
                         delay = 200,
-                        reveal = {"close"}
+                        reveal = { "close" }
                     },
                     offsets = {
                         {
@@ -71,19 +71,19 @@ return {
             vim.keymap.set("n", "<S-Right>", "<Cmd>BufferLineMoveNext<CR>", { noremap = true, silent = true })
             vim.keymap.set("n", "<S-Left>", "<Cmd>BufferLineMovePrev<CR>", { noremap = true, silent = true })
             vim.keymap.set("n", "<leader>b", function()
-              local bufnr = vim.api.nvim_get_current_buf()
-              local buffers = vim.fn.getbufinfo({ buflisted = 1 })
-              if #buffers > 1 then
-                vim.cmd("bnext")
-                if bufnr == vim.api.nvim_get_current_buf() then
-                  vim.cmd("bprevious")
+                local bufnr = vim.api.nvim_get_current_buf()
+                local buffers = vim.fn.getbufinfo({ buflisted = 1 })
+                if #buffers > 1 then
+                    vim.cmd("bnext")
+                    if bufnr == vim.api.nvim_get_current_buf() then
+                        vim.cmd("bprevious")
+                    end
+                else
+                    vim.cmd("enew")
                 end
-              else
-                vim.cmd("enew")
-              end
-              if vim.api.nvim_buf_is_valid(bufnr) then
-                vim.cmd("bdelete " .. bufnr)
-              end
+                if vim.api.nvim_buf_is_valid(bufnr) then
+                    vim.cmd("bdelete " .. bufnr)
+                end
             end, { noremap = true, silent = true })
         end,
     },
@@ -96,11 +96,11 @@ return {
                     icons_enabled = false,
                     theme = 'auto',
                     globalstatus = true,
-                    component_separators = { left = '', right = ''},
-                    section_separators = { left = '', right = ''},
+                    component_separators = { left = '', right = '' },
+                    section_separators = { left = '', right = '' },
                     disabled_filetypes = {
-                        statusline = {"NvimTree"},
-                        winbar = {"NvimTree"},
+                        statusline = { "NvimTree" },
+                        winbar = { "NvimTree" },
                     },
                     ignore_focus = {},
                     always_divide_middle = true,
@@ -125,18 +125,18 @@ return {
                     }
                 },
                 sections = {
-                    lualine_a = {'mode'},
-                    lualine_b = {'branch', 'diff', 'diagnostics'},
-                    lualine_c = {'filename'},
-                    lualine_x = {'encoding', 'fileformat', 'filetype'},
-                    lualine_y = {'progress'},
-                    lualine_z = {'location'}
+                    lualine_a = { 'mode' },
+                    lualine_b = { 'branch', 'diff', 'diagnostics' },
+                    lualine_c = { 'filename' },
+                    lualine_x = { 'encoding', 'fileformat', 'filetype' },
+                    lualine_y = { 'progress' },
+                    lualine_z = { 'location' }
                 },
                 inactive_sections = {
                     lualine_a = {},
                     lualine_b = {},
-                    lualine_c = {'filename'},
-                    lualine_x = {'location'},
+                    lualine_c = { 'filename' },
+                    lualine_x = { 'location' },
                     lualine_y = {},
                     lualine_z = {}
                 },
@@ -148,16 +148,17 @@ return {
         end,
     },
     {
-        'nvim-telescope/telescope.nvim', tag = '0.1.8',
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.8',
         dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function() 
+        config = function()
             local telescope = require("telescope")
             local actions = require("telescope.actions")
             local builtin = require("telescope.builtin")
-            require('telescope').setup{
+            require('telescope').setup {
                 defaults = {
                     mappings = {
-                        i = { 
+                        i = {
                             ["<C-q>"] = actions.close,
                         },
                     }

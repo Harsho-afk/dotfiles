@@ -1,35 +1,59 @@
 return {
     {
-        -- LSP
         "neovim/nvim-lspconfig",
         dependencies = {
-            { "williamboman/mason.nvim",          config = true },
-            { "williamboman/mason-lspconfig.nvim" },
-            { "hrsh7th/nvim-cmp" },             -- Completion engine
-            { "hrsh7th/cmp-nvim-lsp" },         -- LSP source for nvim-cmp
-            { "hrsh7th/cmp-buffer" },           -- Buffer completions
-            { "hrsh7th/cmp-path" },             -- Path completions
-            { "hrsh7th/cmp-cmdline" },          -- Cmdline completions
-            { "L3MON4D3/LuaSnip" },             -- Snippets
-            { "saadparwaiz1/cmp_luasnip" },     -- Snippet completions
-            { "rafamadriz/friendly-snippets" }, -- Predefined snippets
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+            "hrsh7th/nvim-cmp",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
+            "L3MON4D3/LuaSnip",
+            "saadparwaiz1/cmp_luasnip",
+            "rafamadriz/friendly-snippets",
         },
         config = function()
             local lspconfig = require("lspconfig")
+            local mason = require("mason")
             local mason_lspconfig = require("mason-lspconfig")
-
-            require("mason").setup()
-            mason_lspconfig.setup {
-                ensure_installed = { "lua_ls", "pyright", },
-                automatic_installation = true,
-            }
-
-            -- nvim-cmp setup
             local cmp = require("cmp")
             local luasnip = require("luasnip")
+
+            vim.lsp.config('lua_ls', {
+      settings = {
+        Lua = {
+          runtime = {
+            version = 'LuaJIT',
+          },
+          diagnostics = {
+            globals = {
+              'vim',
+              'require',
+            },
+                            workspace = {
+                                    library = vim.api.nvim_get_runtime_file("", true),
+                                    checkThirdParty = false,
+                                },
+                                telemetry = { enable = false },
+                            format = {
+                                    enable = true,
+                            }
+
+          },
+        },
+      },
+    })
+            mason.setup()
+            mason_lspconfig.setup({
+                ensure_installed = { "lua_ls", "pyright", "rust_analyzer" },
+            })
+
+            -- Snippets setup
             require("luasnip.loaders.from_vscode").lazy_load()
 
-            cmp.setup {
+            -- nvim-cmp setup
+            cmp.setup({
                 snippet = {
                     expand = function(args)
                         luasnip.lsp_expand(args.body)
@@ -63,9 +87,9 @@ return {
                     { name = "buffer" },
                     { name = "path" },
                 }),
-            }
+            })
 
-            local on_attach = function(_, bufnr)
+            local on_attach = function(client, bufnr)
                 local opts = { buffer = bufnr, noremap = true, silent = true }
                 vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
                 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
@@ -79,39 +103,8 @@ return {
                 end, opts)
             end
 
-            -- LSP servers setup with cmp capabilities
+            -- LSP capabilities for nvim-cmp
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-            for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
-                lspconfig[server].setup {
-                    on_attach = on_attach,
-                    capabilities = capabilities,
-                }
-            end
-            vim.lsp.config("lua_ls", {
-                settings = {
-                    Lua = {
-                        format = {
-                            enable = true,
-                            defaultConfig = {
-                                indent_style = "space",
-                                indent_size = "4",
-                            },
-                        },
-                        runtime = {
-                            version = "LuaJIT",
-                        },
-                        diagnostics = {
-                            globals = { "vim" },
-                        },
-                        workspace = {
-                            library = vim.api.nvim_get_runtime_file("", true),
-                            checkThirdParty = false,
-                        },
-                        telemetry = { enable = false },
-                    },
-                },
-            })
         end,
-    }
+    },
 }
