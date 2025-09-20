@@ -61,7 +61,7 @@ chmod +x ~/.config/hypr/scripts/*.sh
 ```bash
 yay -S hyprland waybar kitty rofi hyprpaper hypridle hyprlock \
        brightnessctl playerctl grim slurp wl-clipboard cliphist \
-       dunst nm-applet blueman neovim
+       dunst nm-applet blueman neovim rsync
 ```
 
 #### Manual Installation
