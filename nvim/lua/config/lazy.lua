@@ -50,6 +50,8 @@ vim.keymap.set("n", "<C-h>", "<Cmd>noh<CR>", { noremap = true, silent = true, de
 
 vim.opt.whichwrap:append "<,>,[,],h,l"
 
+vim.keymap.set("n", "<leader>n", ":enew<CR>", { noremap = true, silent = true, desc = "New Buffer" })
+
 -- Setup lazy.nvim
 require("lazy").setup({
     spec = {
