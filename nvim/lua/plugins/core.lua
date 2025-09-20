@@ -106,7 +106,7 @@ return {
                 for _, client in ipairs(lsp_clients) do
                     table.insert(client_names, client.name)
                 end
-                return " " .. table.concat(client_names, ", ") .. " " --  is the devicon for a server
+                return table.concat(client_names, ", ")
             end
             require("lualine").setup {
                 options = {

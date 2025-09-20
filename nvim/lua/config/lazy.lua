@@ -21,36 +21,28 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- Indentation settings
+vim.opt.clipboard = "unnamedplus"
+vim.opt.termguicolors = true
+
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
-vim.opt.clipboard = "unnamedplus"
-
-vim.opt.termguicolors = true
-
 vim.keymap.set("n", "<C-s>", "<Cmd>w<CR>", { noremap = true, desc = "Save File" })
 vim.keymap.set("i", "<C-s>", "<Esc><Cmd>w<CR>a", { noremap = true, desc = "Save File" })
-
 vim.keymap.set("n", "<C-c>", ":%y+<CR>", { noremap = true, desc = "Copy Entire File" })
+vim.keymap.set("n", "<C-p>", "<Cmd>Lazy sync<CR>", { noremap = true, silent = true, desc = "Sync Lazy Plugins" })
+vim.keymap.set("n", "<C-w><C-a>", "<Cmd>qa<CR>", { noremap = true, silent = true, desc = "Quit All Windows" })
+vim.keymap.set("n", "<C-h>", "<Cmd>noh<CR>", { noremap = true, silent = true, desc = "Clear highlight"})
+vim.opt.whichwrap:append "<,>,[,],h,l"
+vim.keymap.set("n", "<leader>n", ":enew<CR>", { noremap = true, silent = true, desc = "New Buffer" })
 
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.keymap.set("n", "<leader>n", function()
     vim.opt.relativenumber = not vim.opt.relativenumber:get()
 end, { desc = "Toggle relative line numbers" })
-
-vim.keymap.set("n", "<C-p>", "<Cmd>Lazy sync<CR>", { noremap = true, silent = true, desc = "Sync Lazy Plugins" })
-
-vim.keymap.set("n", "<C-w><C-a>", "<Cmd>qa<CR>", { noremap = true, silent = true, desc = "Quit All Windows" })
-
-vim.keymap.set("n", "<C-h>", "<Cmd>noh<CR>", { noremap = true, silent = true, desc = "Clear highlight"})
-
-vim.opt.whichwrap:append "<,>,[,],h,l"
-
-vim.keymap.set("n", "<leader>n", ":enew<CR>", { noremap = true, silent = true, desc = "New Buffer" })
 
 -- Setup lazy.nvim
 require("lazy").setup({

@@ -19,26 +19,6 @@ return {
             local cmp = require("cmp")
             local luasnip = require("luasnip")
 
-            vim.lsp.config("clangd", {
-                on_attach = function(client, bufnr)
-                    if client.server_capabilities.documentFormattingProvider then
-                        vim.api.nvim_create_autocmd("BufWritePre", {
-                            group = vim.api.nvim_create_augroup("LspFormat." .. bufnr, {}),
-                            buffer = bufnr,
-                            callback = function()
-                                vim.lsp.buf.format({
-                                    bufnr = bufnr,
-                                    options = {
-                                        tabSize = 4,
-                                        insertSpaces = true,
-                                    },
-                                })
-                            end,
-                        })
-                    end
-                end,
-            })
-
             vim.lsp.config("lua_ls", {
                 settings = {
                     Lua = {
