@@ -12,6 +12,7 @@ This repository contains my personal configuration files for my Linux setup, cen
 - Hyprpaper
 - Hypridle
 - Hyprlock
+- Nvim
 - Required utilities: brightnessctl, wpctl, playerctl, etc.
 
 ### Setup
@@ -33,7 +34,3 @@ yay -S hyprland waybar kitty rofi hyprpaper hypridle hyprlock brightnessctl play
 
 ### Changing Wallpaper
 Place your wallpapers in the `~/Wallpaper` directory and update `hyprpaper.conf` accordingly.
-
-## NvChad Setup
-
-The Neovim configuration is based on NvChad.
