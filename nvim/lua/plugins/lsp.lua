@@ -41,9 +41,22 @@ return {
                 },
             })
 
+            vim.lsp.config('pylsp', {
+                settings = {
+                    pylsp = {
+                        plugins = {
+                            pycodestyle = {
+                                ignore = { 'W391' },
+                                maxLineLength = 100
+                            }
+                        }
+                    }
+                }
+            })
+
             mason.setup()
             mason_lspconfig.setup({
-                ensure_installed = { "lua_ls", "pylsp", "rust_analyzer", "clangd", "jdtls", "ts_ls" },
+                ensure_installed = { "lua_ls", "pylsp", "rust_analyzer", "clangd", "jdtls", "ts_ls", "cssls" },
             })
 
             -- Snippets setup
