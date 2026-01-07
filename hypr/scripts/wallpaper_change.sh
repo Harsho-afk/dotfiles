@@ -31,7 +31,7 @@ fi
 
 WALLPAPER=$(printf "%s\n" "${AVAILABLE[@]}" | shuf -n 1)
 
-hyprctl hyprpaper reload ,"$WALLPAPER"
+hyprctl hyprpaper wallpaper ",$WALLPAPER,cover"
 
 echo "$WALLPAPER" >> "$HISTORY_FILE"
 tail -n "$HISTORY_SIZE" "$HISTORY_FILE" > "$HISTORY_FILE.tmp" && mv "$HISTORY_FILE.tmp" "$HISTORY_FILE"
