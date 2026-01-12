@@ -11,13 +11,13 @@ return {
         dependencies = "nvim-lua/plenary.nvim",
         config = function()
             require("diffview").setup()
-            vim.keymap.set("n", "<leader>do", "<cmd>DiffviewOpen<CR>",
+            vim.keymap.set("n", "<leader>go", "<cmd>DiffviewOpen<CR>",
                 { noremap = true, silent = true, desc = "Open Diffview" })
-            vim.keymap.set("n", "<leader>dc", "<cmd>DiffviewClose<CR>",
+            vim.keymap.set("n", "<leader>gc", "<cmd>DiffviewClose<CR>",
                 { noremap = true, silent = true, desc = "Close Diffview" })
-            vim.keymap.set("n", "<leader>dh", "<cmd>DiffviewFileHistory<CR>",
+            vim.keymap.set("n", "<leader>gh", "<cmd>DiffviewFileHistory<CR>",
                 { noremap = true, silent = true, desc = "File history" })
-            vim.keymap.set("n", "<leader>dr", "<cmd>DiffviewRefresh<CR>",
+            vim.keymap.set("n", "<leader>gr", "<cmd>DiffviewRefresh<CR>",
                 { noremap = true, silent = true, desc = "Refresh Diffview" })
         end,
     }
