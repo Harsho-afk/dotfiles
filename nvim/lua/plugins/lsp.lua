@@ -26,17 +26,14 @@ return {
                             version = "LuaJIT",
                         },
                         diagnostics = {
-                            globals = {
-                                "vim",
-                                "require",
-                            },
-                            workspace = {
-                                library = vim.api.nvim_get_runtime_file("", true),
-                                checkThirdParty = false,
-                            },
-                            telemetry = { enable = false },
-                            format = { enable = true }
+                            globals = { "vim", "require" },
                         },
+                        workspace = {
+                            library = vim.api.nvim_get_runtime_file("", true),
+                            checkThirdParty = false,
+                        },
+                        telemetry = { enable = false },
+                        format = { enable = true }
                     },
                 },
             })
@@ -112,9 +109,6 @@ return {
             vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { noremap = true, silent = true, desc = "Rename" })
             vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action,
                 { noremap = true, silent = true, desc = "Code Action" })
-            vim.keymap.set("n", "<leader>f", function()
-                vim.lsp.buf.format { async = true }
-            end, { noremap = true, silent = true, desc = "Format Code" })
             vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float,
                 { noremap = true, silent = true, desc = "Show Line Diagnostics" })
             vim.keymap.set("n", "]d", vim.diagnostic.goto_next,
@@ -127,21 +121,59 @@ return {
     },
     {
         "stevearc/conform.nvim",
+        dependencies = {
+            "williamboman/mason.nvim",
+            "WhoIsSethDaniel/mason-tool-installer.nvim",
+        },
         event = { "BufReadPre", "BufNewFile" },
         cmd = { "ConformInfo" },
         config = function()
+            -- Ensure formatters are installed
+            require("mason-tool-installer").setup({
+                ensure_installed = {
+                    "black",
+                    "prettier",
+                    "shfmt",
+                },
+                auto_update = false,
+                run_on_start = true,
+            })
+
             require("conform").setup({
                 format_on_save = nil,
                 formatters_by_ft = {
                     python = { "black" },
                     javascript = { "prettier" },
                     typescript = { "prettier" },
+                    typescriptreact = { "prettier" },
+                    javascriptreact = { "prettier" },
                     json = { "prettier" },
+                    html = { "prettier" },
+                    css = { "prettier" },
+                    scss = { "prettier" },
+                    markdown = { "prettier" },
+                    yaml = { "prettier" },
                     sh = { "shfmt" },
+                },
+                formatters = {
+                    black = {
+                        command = "black",
+                        args = { "--quiet", "-" },
+                        stdin = true,
+                    },
+                    prettier = {
+                        prepend_args = {
+                            "--single-quote",
+                            "--trailing-comma", "es5",
+                            "--tab-width", "2",
+                            "--semi",
+                            "--print-width", "100",
+                        },
+                    },
                 },
             })
 
-            vim.keymap.set("n", "<leader>f", function()
+            vim.keymap.set("n", "<leader>fm", function()
                 require("conform").format({ async = true, lsp_fallback = true })
             end, { desc = "Format code" })
         end,
