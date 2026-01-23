@@ -53,7 +53,7 @@ return {
 
             mason.setup()
             mason_lspconfig.setup({
-                ensure_installed = { "lua_ls", "pylsp", "rust_analyzer", "clangd", "jdtls", "ts_ls", "cssls" },
+                ensure_installed = { "lua_ls", "pylsp", "rust_analyzer", "clangd", "jdtls", "ts_ls", "cssls", "html", "djlsp" },
             })
 
             -- Snippets setup
@@ -131,7 +131,6 @@ return {
             -- Ensure formatters are installed
             require("mason-tool-installer").setup({
                 ensure_installed = {
-                    "black",
                     "prettier",
                     "shfmt",
                 },
@@ -149,6 +148,7 @@ return {
                     javascriptreact = { "prettier" },
                     json = { "prettier" },
                     html = { "prettier" },
+                    htmldjango = { "prettier" },
                     css = { "prettier" },
                     scss = { "prettier" },
                     markdown = { "prettier" },
@@ -165,9 +165,8 @@ return {
                         prepend_args = {
                             "--single-quote",
                             "--trailing-comma", "es5",
-                            "--tab-width", "2",
                             "--semi",
-                            "--print-width", "100",
+                            "--tab-width", "4",
                         },
                     },
                 },
