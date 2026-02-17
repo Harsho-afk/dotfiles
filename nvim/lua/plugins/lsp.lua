@@ -53,7 +53,7 @@ return {
 
             mason.setup()
             mason_lspconfig.setup({
-                ensure_installed = { "lua_ls", "pylsp", "rust_analyzer", "clangd", "jdtls", "ts_ls", "cssls", "html", "djlsp", "go" },
+                ensure_installed = { "lua_ls", "pylsp", "rust_analyzer", "clangd", "jdtls", "ts_ls", "cssls", "html", "djlsp", "gopls" },
             })
 
             -- Snippets setup
