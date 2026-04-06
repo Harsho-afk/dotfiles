@@ -7,7 +7,6 @@ This repository contains personal configuration files for a Linux desktop setup 
 - **Hyprland**
 - **Waybar**
 - **Neovim**
-- **Kitty**
 
 ## Prerequisites
 
