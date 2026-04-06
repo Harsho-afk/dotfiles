@@ -83,7 +83,13 @@ return {
                     vim.cmd("enew")
                 end
                 if vim.api.nvim_buf_is_valid(bufnr) then
-                    vim.cmd("bdelete " .. bufnr)
+                    local buftype = vim.bo.buftype
+
+                    if buftype == "terminal" then
+                        vim.cmd("bdelete!")
+                    else
+                        vim.cmd("bdelete")
+                    end
                 end
             end, { noremap = true, silent = true, desc = "Close Current Buffer" })
         end,

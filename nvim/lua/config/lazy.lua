@@ -34,9 +34,13 @@ vim.keymap.set("i", "<C-s>", "<Esc><Cmd>w<CR>a", { noremap = true, desc = "Save 
 vim.keymap.set("n", "<C-c>", ":%y+<CR>", { noremap = true, desc = "Copy Entire File" })
 vim.keymap.set("n", "<C-p>", "<Cmd>Lazy sync<CR>", { noremap = true, silent = true, desc = "Sync Lazy Plugins" })
 vim.keymap.set("n", "<C-w><C-a>", "<Cmd>qa<CR>", { noremap = true, silent = true, desc = "Quit All Windows" })
-vim.keymap.set("n", "<C-h>", "<Cmd>noh<CR>", { noremap = true, silent = true, desc = "Clear highlight"})
+vim.keymap.set("n", "<C-h>", "<Cmd>noh<CR>", { noremap = true, silent = true, desc = "Clear highlight" })
 vim.opt.whichwrap:append "<,>,[,],h,l"
 vim.keymap.set("n", "<C-t>", ":enew<CR>", { noremap = true, silent = true, desc = "New Buffer" })
+vim.keymap.set("n", "<A-h>", ":split<CR>", { noremap = true, silent = true, desc = "Split Window Horizontally" })
+vim.keymap.set("n", "<A-v>", ":vsplit<CR>", { noremap = true, silent = true, desc = "Split Window Vertically" })
+vim.keymap.set("n", "<A-h>t", ":split | terminal<CR>", { noremap = true, silent = true, desc = "Open Terminal Horizontally" })
+vim.keymap.set("n", "<A-v>t", ":vsplit | terminal<CR>", { noremap = true, silent = true, desc = "Open Terminal Vertically" })
 
 vim.opt.number = true
 vim.opt.relativenumber = true
