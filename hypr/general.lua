@@ -1,0 +1,93 @@
+hl.monitor({
+    output = "eDP-1",
+    mode = "1920x1080@144.42",
+    position = "1920x0",
+    scale = 1,
+})
+
+hl.monitor({
+    output = "HDMI-A-1",
+    mode = "1920x1080@100.00",
+    position = "0x0",
+    scale = 1,
+})
+
+hl.config({
+    general = {
+        gaps_in = 3,
+        gaps_out = 5,
+        border_size = 2,
+        col = {
+            active_border = "rgba(ffffffff)",
+            inactive_border = "rgba(000000ff)",
+        },
+        resize_on_border = true,
+        allow_tearing = false,
+        layout = "dwindle",
+    },
+
+    decoration = {
+        rounding = 5,
+        rounding_power = 5,
+        shadow = {
+            enabled = false,
+            range = 4,
+            render_power = 3,
+            color = "rgba(1a1a1aee)",
+        },
+        blur = {
+            enabled = false,
+        },
+    },
+
+    input = {
+        kb_layout = "us",
+        kb_options = "caps:swapescape",
+        numlock_by_default = true,
+    },
+
+    gesture = {
+        workspace_swipe_forever = true,
+    },
+
+    misc = {
+        disable_hyprland_logo = true,
+        force_default_wallpaper = 1,
+    },
+
+    binds = {
+        allow_workspace_cycles = true,
+        movefocus_cycles_fullscreen = true,
+    },
+})
+
+hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
+hl.gesture({ fingers = 3, direction = "vertical", action = "workspace" })
+
+hl.curve({ "easeOutQuint", { type = "bezier", points = { { 0.23, 1 }, { 0.32, 1 } } } })
+hl.curve({ "easeInOutCubic", { type = "bezier", points = { { 0.65, 0.05 }, { 0.36, 1 } } } })
+hl.curve({ "linear", { type = "bezier", points = { { 0, 0 }, { 1, 1 } } } })
+hl.curve({ "almostLinear", { type = "bezier", points = { { 0.5, 0.5 }, { 0.75, 1 } } } })
+hl.curve({ "quick", { type = "bezier", points = { { 0.15, 0 }, { 0.1, 1 } } } })
+
+hl.animation({ leaf = "global", enabled = true, speed = 10, curve = "default" })
+
+hl.animation({ leaf = "windows", enabled = true, speed = 4.79, curve = "easeOutQuint" })
+hl.animation({ leaf = "windowsIn", enabled = true, speed = 4.1, curve = "easeOutQuint", style = "popin 87%" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 1.49, curve = "linear", style = "popin 87%" })
+
+hl.animation({ leaf = "layers", enabled = true, speed = 3.81, curve = "easeOutQuint" })
+hl.animation({ leaf = "layersIn", enabled = true, speed = 4, curve = "easeOutQuint", style = "fade" })
+hl.animation({ leaf = "layersOut", enabled = true, speed = 1.5, curve = "linear", style = "fade" })
+
+hl.animation({ leaf = "fade", enabled = true, speed = 3.03, curve = "quick" })
+hl.animation({ leaf = "fadeIn", enabled = true, speed = 1.73, curve = "almostLinear" })
+hl.animation({ leaf = "fadeOut", enabled = true, speed = 1.46, curve = "almostLinear" })
+hl.animation({ leaf = "fadeLayersIn", enabled = true, speed = 1.79, curve = "almostLinear" })
+hl.animation({ leaf = "fadeLayersOut", enabled = true, speed = 1.39, curve = "almostLinear" })
+
+hl.animation({ leaf = "border", enabled = true, speed = 5.39, curve = "easeOutQuint" })
+
+hl.animation({ leaf = "workspaces", enabled = true, speed = 1.94, curve = "almostLinear", style = "fade" })
+hl.animation({ leaf = "workspacesIn", enabled = true, speed = 1.21, curve = "almostLinear", style = "fade" })
+hl.animation({ leaf = "workspacesOut", enabled = true, speed = 1.94, curve = "almostLinear", style = "fade" })
