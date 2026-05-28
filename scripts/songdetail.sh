@@ -1,32 +1,24 @@
 #!/bin/bash
 
-player=$(playerctl -l 2>/dev/null | head -n 1)
-
-if [ -z "$player" ]; then
+if ! playerctl --player=spotify status >/dev/null 2>&1; then
     exit 0
 fi
 
-status=$(playerctl --player="$player" status 2>/dev/null)
+status=$(playerctl --player=spotify status 2>/dev/null)
 
 if [ "$status" != "Playing" ] && [ "$status" != "Paused" ]; then
     exit 0
 fi
 
-artist=$(playerctl --player="$player" metadata artist 2>/dev/null)
-title=$(playerctl --player="$player" metadata title 2>/dev/null)
+artist=$(playerctl --player=spotify metadata artist 2>/dev/null)
+title=$(playerctl --player=spotify metadata title 2>/dev/null)
 
 if [ -z "$title" ]; then
     exit 0
 fi
 
-if [ "$status" = "Paused" ]; then
-    icon=" "
-else
-    icon=" "
-fi
-
 if [ -n "$artist" ]; then
-    echo "${icon}${artist} — ${title}"
+    echo "${artist} — ${title}"
 else
-    echo "${icon}${title}"
+    echo "${title}"
 fi
