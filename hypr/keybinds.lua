@@ -1,4 +1,5 @@
 require("variables")
+require("rules")
 
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal), { description = "Open the terminal" })
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager), { description = "Open the file manager" })
@@ -23,9 +24,16 @@ hl.bind(mainMod .. " + D",
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("blueman-manager"))
 hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprshutdown"))
-hl.bind("CTRL + ALT + L",hl.dsp.exec_cmd("hyprlock"))
-hl.bind(mainMod .. " + CTRL + N",hl.dsp.exec_cmd("/usr/bin/shutdown now"))
-hl.bind(mainMod .. " + CTRL + R",hl.dsp.exec_cmd("/usr/bin/reboot"))
+hl.bind("CTRL + ALT + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + CTRL + N", hl.dsp.exec_cmd("/usr/bin/shutdown now"))
+hl.bind(mainMod .. " + CTRL + R", hl.dsp.exec_cmd("/usr/bin/reboot"))
+hl.bind("PRINT", hl.dsp.exec_cmd("grim -g '$(slurp -d)' - | wl-copy"))
+hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("grim - | wl-copy"))
+local getactive = "hyprctl activewindow -j"
+local jsonProces = "jq -r \"\"\\(.at[0]),\\(.at[1]) \\(.size([0])x\\(.size[1])\""
+hl.bind("CTRL + PRINT", hl.dsp.exec_cmd("grim -g '$(" .. getactive .. " | " .. jsonProces .. ")' - | wl-copy"))
+hl.bind(mainMod .. " + CTRL + S", hl.dsp.exec_cmd("spotify"))
+hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.exec_cmd("htop"))
 
 for i = 1, 10 do
     local key = i % 10
@@ -59,11 +67,24 @@ hl.bind(mainMod .. " + V", hl.dsp.window.float("toggle", "activewindow"),
     { description = "Toggle active window floating" })
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag())
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize())
-hl.bind(mainMod .. " + CTRL + F",hl.dsp.window.fullscreen({mode="fullscreen",action="toggle",window="activewindow"}))
-hl.bind(mainMod .. " + A",hl.dsp.window.fullscreen({mode="maximized",action="toggle",window="activewindow"}))
-hl.bind("ALT + TAB",hl.dsp.window.cycle_next())
+hl.bind(mainMod .. " + CTRL + F", hl.dsp.window.fullscreen({
+    mode = "fullscreen",
+    action = "toggle",
+    window =
+    "activewindow"
+}))
+hl.bind(mainMod .. " + A", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle", window = "activewindow" }))
+hl.bind("ALT + TAB", hl.dsp.window.cycle_next())
 
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.workspace.toggle_special("special"))
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.move({ workspace = "special" }))
 hl.bind(mainMod .. " + mouse_down", hl.dsp.workspace.move({ workspace = "r+1" }))
 hl.bind(mainMod .. " + mouse_up", hl.dsp.workspace.move({ workspace = "r-1" }))
+
+hl.bind(mainMod .. " + Z", function()
+    if transperant:is_enabled() then
+        transperant:set_enabled(false)
+    else
+        transperant:set_enabled(true)
+    end
+end)

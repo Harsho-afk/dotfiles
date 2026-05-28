@@ -1,4 +1,4 @@
-home = os.getenv("$HOME")
+home = os.getenv("HOME")
 mainMod = "SUPER"
 terminal = "kitty"
 fileManager = "thunar"
