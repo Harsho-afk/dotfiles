@@ -66,7 +66,7 @@ class PlayerManager:
         if "mpris:trackid" in metadata.keys() and ":ad:" in metadata["mpris:trackid"]:
             title = "Advertisement"
 
-        icon = " " if player.props.status == "Playing" else " "
+        icon = " " if player.props.status == "Playing" else " "
         self.write_output(icon + title, player)
 
     def on_player_appeared(self, name):
