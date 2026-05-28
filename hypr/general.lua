@@ -61,7 +61,7 @@ hl.config({
     },
 
     dwindle = {
-        smart_split = true,
+        preserve_split = true,
     },
 })
 

@@ -24,6 +24,7 @@ transperant = hl.window_rule({
     },
     opacity = "1 0.8",
 })
+transperant:set_enabled(false)
 
 hl.layer_rule({
     match = {
@@ -37,19 +38,41 @@ hl.workspace_rule({
     monitor = "eDP-1",
     default = true
 })
+hl.workspace_rule({
+    workspace = "2",
+    monitor = "eDP-1",
+})
+hl.workspace_rule({
+    workspace = "3",
+    monitor = "eDP-1",
+})
+hl.workspace_rule({
+    workspace = "4",
+    monitor = "eDP-1",
+})
+hl.workspace_rule({
+    workspace = "5",
+    monitor = "eDP-1",
+})
 
 hl.workspace_rule({
     workspace = "11",
     monitor = "HDMI-A-1",
     default = true
 })
-
 hl.workspace_rule({
-    workspace = "r[1-10]",
-    monitor = "eDP-1",
+    workspace = "12",
+    monitor = "HDMI-A-1",
 })
-
 hl.workspace_rule({
-    workspace = "r[11-20]",
+    workspace = "13",
+    monitor = "HDMI-A-1",
+})
+hl.workspace_rule({
+    workspace = "14",
+    monitor = "HDMI-A-1",
+})
+hl.workspace_rule({
+    workspace = "15",
     monitor = "HDMI-A-1",
 })
