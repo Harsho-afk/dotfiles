@@ -9,15 +9,19 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("blueman-manager"), { description = "
 hl.bind(mainMod .. " + CTRL + S", hl.dsp.exec_cmd("spotify"), { description = "Open Spotify" })
 hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.exec_cmd(""), { description = "Reserved shortcut" })
 
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(scripts .. "/volume.sh --inc"), { description = "Increase volume" })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(scripts .. "/volume.sh --dec"), { description = "Decrease volume" })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd(scripts .. "/volume.sh --toggle"), { description = "Toggle speaker mute" })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(scripts .. "/volume.sh --inc"),
+    { locked = true, description = "Increase volume" })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(scripts .. "/volume.sh --dec"),
+    { locked = true, description = "Decrease volume" })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd(scripts .. "/volume.sh --toggle"),
+    { locked = true, description = "Toggle speaker mute" })
 hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(scripts .. "/volume.sh --mic-toggle"),
-    { description = "Toggle microphone mute" })
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { description = "Next media track" })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { description = "Toggle media playback" })
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { description = "Play or pause media" })
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { description = "Previous media track" })
+    { locked = true, description = "Toggle microphone mute" })
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true, description = "Next media track" })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"),
+    { locked = true, description = "Toggle media playback" })
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true, description = "Play or pause media" })
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true, description = "Previous media track" })
 
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(scripts .. "/brightness.sh --inc"),
     { description = "Increase brightness" })
