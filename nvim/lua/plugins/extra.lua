@@ -33,10 +33,10 @@ return {
         lazy = false,
         config = function()
             require("markview").setup({
-                preview = { enable = false }
+                preview = { enable = true }
             });
             vim.api.nvim_set_keymap("n", "<leader>m", "<CMD>Markview<CR>", { desc = "Toggles `markview` previews globally." });
-            vim.api.nvim_set_keymap("i", "<Ctrl-m>", "<CMD>Markview HybridToggle<CR>", { desc = "Toggles `hybrid mode` globally." });
+            vim.api.nvim_set_keymap("i", "<C-m>", "<CMD>Markview HybridToggle<CR>", { desc = "Toggles `hybrid mode` globally." });
             vim.api.nvim_set_keymap("n", "<leader>s", "<CMD>Markview splitToggle<CR>", { desc = "Toggles `splitview` for current buffer." });
         end
         -- Completion for `blink.cmp`
