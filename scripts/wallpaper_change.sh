@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-WALLPAPER_DIR="$HOME/Wallpaper"
+WALLPAPER_DIR="$HOME/Pictures/Wallpaper"
 HISTORY_FILE="/tmp/.wallpaper_history"
 
 mkdir -p "$(dirname "$HISTORY_FILE")"

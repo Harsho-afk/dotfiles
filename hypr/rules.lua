@@ -5,18 +5,6 @@ hl.window_rule({
     suppress_event = "maximize",
 })
 
-hl.window_rule({
-    match = {
-        class = "^$",
-        title = "^$",
-        xwayland = true,
-        float = true,
-        fullscreen = false,
-        pin = false,
-    },
-    no_focus = true,
-})
-
 transperant = hl.window_rule({
     name = "transperant",
     match = {

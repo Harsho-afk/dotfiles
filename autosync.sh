@@ -4,6 +4,7 @@ rsync -av --delete \
     ~/.config/nvim \
     ~/.config/waybar \
     ~/.config/kitty \
+    ~/.config/scripts \
     ~/Programms/dotfiles/
 
 cd ~/Programms/dotfiles || exit

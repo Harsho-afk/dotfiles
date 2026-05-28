@@ -53,11 +53,12 @@ hl.config({
     misc = {
         disable_hyprland_logo = true,
         force_default_wallpaper = 1,
+        on_focus_under_fullscreen = 1,
     },
 
-    binds = {
-        allow_workspace_cycles = true,
-        movefocus_cycles_fullscreen = true,
+    ecosystem = {
+        no_update_news = true,
+        no_donation_nag = true,
     },
 
     dwindle = {
