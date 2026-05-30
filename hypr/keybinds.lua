@@ -10,23 +10,25 @@ hl.bind(mainMod .. " + CTRL + S", hl.dsp.exec_cmd("spotify"), { description = "O
 hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.exec_cmd(""), { description = "Reserved shortcut" })
 
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(scripts .. "/volume.sh --inc"),
-    { locked = true, description = "Increase volume" })
+    { locked = true, repeating = true, description = "Increase volume" })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(scripts .. "/volume.sh --dec"),
-    { locked = true, description = "Decrease volume" })
+    { locked = true, repeating = true, description = "Decrease volume" })
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd(scripts .. "/volume.sh --toggle"),
     { locked = true, description = "Toggle speaker mute" })
 hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(scripts .. "/volume.sh --mic-toggle"),
     { locked = true, description = "Toggle microphone mute" })
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true, description = "Next media track" })
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"),
+    { locked = true, repeating = true, description = "Next media track" })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"),
     { locked = true, description = "Toggle media playback" })
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true, description = "Play or pause media" })
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true, description = "Previous media track" })
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"),
+    { locked = true, repeating = true, description = "Previous media track" })
 
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(scripts .. "/brightness.sh --inc"),
-    { description = "Increase brightness" })
+    { repeating = true, description = "Increase brightness" })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(scripts .. "/brightness.sh --dec"),
-    { description = "Decrease brightness" })
+    { repeating = true, description = "Decrease brightness" })
 
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(scripts .. "/wallpaper_change.sh"), { description = "Change wallpaper" })
 
@@ -69,10 +71,10 @@ for i = 11, 20 do
         { description = "Move window to workspace " .. i })
 end
 
-hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "l" }), { description = "Focus left window" })
-hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "r" }), { description = "Focus right window" })
-hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "u" }), { description = "Focus upper window" })
-hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "d" }), { description = "Focus lower window" })
+hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "l" }), { repeating = true, description = "Focus left window" })
+hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "r" }), { repeating = true, description = "Focus right window" })
+hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "u" }), { repeating = true, description = "Focus upper window" })
+hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "d" }), { repeating = true, description = "Focus lower window" })
 
 hl.bind(mainMod .. " + C", hl.dsp.window.close("activewindow"), { description = "Close active window" })
 hl.bind("ALT + F4", hl.dsp.window.close("activewindow"), { description = "Close active window" })
@@ -85,7 +87,7 @@ hl.bind(mainMod .. " + CTRL + F",
 hl.bind(mainMod .. " + A",
     hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle", window = "activewindow" }),
     { description = "Toggle maximized mode" })
-hl.bind("ALT + TAB", hl.dsp.window.cycle_next(), { description = "Cycle windows" })
+hl.bind("ALT + TAB", hl.dsp.window.cycle_next(), { repeating = true, description = "Cycle windows" })
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.workspace.toggle_special("special"),
     { description = "Toggle special workspace" })
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.move({ workspace = "special" }),
@@ -103,7 +105,11 @@ end, {
     description = "Toggle transparency"
 })
 
-hl.bind(mainMod .. " + SHIFT + right", hl.dsp.layout("rotatesplit 90"), { description = "Rotate split right" })
-hl.bind(mainMod .. " + SHIFT + left", hl.dsp.layout("rotatesplit -90"), { description = "Rotate split left" })
-hl.bind(mainMod .. " + SHIFT + up", hl.dsp.layout("togglesplit"), { description = "Toggle split orientation" })
-hl.bind(mainMod .. " + SHIFT + down", hl.dsp.layout("swapsplit"), { description = "Swap split direction" })
+hl.bind(mainMod .. " + SHIFT + right", hl.dsp.layout("rotatesplit 90"),
+    { repeating = true, description = "Rotate split right" })
+hl.bind(mainMod .. " + SHIFT + left", hl.dsp.layout("rotatesplit -90"),
+    { repeating = true, description = "Rotate split left" })
+hl.bind(mainMod .. " + SHIFT + up", hl.dsp.layout("togglesplit"),
+    { repeating = true, description = "Toggle split orientation" })
+hl.bind(mainMod .. " + SHIFT + down", hl.dsp.layout("swapsplit"),
+    { repeating = true, description = "Swap split direction" })

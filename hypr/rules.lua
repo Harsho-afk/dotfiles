@@ -5,6 +5,14 @@ hl.window_rule({
     suppress_event = "maximize",
 })
 
+hl.window_rule({
+    match = {
+        class = "^mcontrolcenter$",
+    },
+    float = true,
+    size = { 750, 550 },
+})
+
 transperant = hl.window_rule({
     name = "transperant",
     match = {
