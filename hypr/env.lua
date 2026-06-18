@@ -1,6 +1,8 @@
 hl.env("AQ_DRM_DEVICES","/dev/dri/intel-igpu:/dev/dri/nvidia-gpu")
-hl.env("XCURSOR_SIZE",24)
+hl.env("XCURSOR_THEME", "Bibata-Modern-Ice")
+hl.env("XCURSOR_SIZE", "24")
+hl.env("HYPRCURSOR_THEME", "Bibata-Modern-Ice")
 hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("NVD_BACKEND","direct")
 hl.env("QT_QPA_PLATFORMTHEME","qt6ct")
-
+hl.env("QT_STYLE_OVERRIDE","kvantum")

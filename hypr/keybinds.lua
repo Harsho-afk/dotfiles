@@ -72,11 +72,12 @@ for i = 11, 20 do
 end
 
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "l" }), { repeating = true, description = "Focus left window" })
-hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "r" }), { repeating = true, description = "Focus right window" })
+hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "r" }),
+    { repeating = true, description = "Focus right window" })
 hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "u" }), { repeating = true, description = "Focus upper window" })
 hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "d" }), { repeating = true, description = "Focus lower window" })
 
-hl.bind(mainMod .. " + C", hl.dsp.window.close("activewindow"), { description = "Close active window" })
+hl.bind(mainMod .. " + C", hl.dsp.window.close("activewindow"), { repeating = true, description = "Close active window" })
 hl.bind("ALT + F4", hl.dsp.window.close("activewindow"), { description = "Close active window" })
 hl.bind(mainMod .. " + V", hl.dsp.window.float("toggle", "activewindow"), { description = "Toggle floating mode" })
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { description = "Drag window" })
