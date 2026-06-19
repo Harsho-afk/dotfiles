@@ -1,0 +1,299 @@
+[{
+    "layer": "top",
+    "output": ["*"],
+    "position": "top",
+    "mod": "dock",
+    "height": 40,
+    "spacing": 5,
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "reload_style_on_change": true,
+
+    "modules-left": [
+        "group/Utilities",
+        "group/workspaces",
+        "group/cpuram",
+        "mpris"
+    ],
+    "modules-center": [
+        "group/windows"
+    ],
+    "modules-right": [
+        "group/brightvol",
+        "group/system"
+    ],
+
+    "custom/openbracket": {
+        "format": "[",
+        "tooltip": false
+    },
+    "custom/closebracket": {
+        "format": "]",
+        "tooltip": false
+    },
+    "custom/split": {
+        "format": "|",
+        "tooltip": false
+    },
+
+    "group/Utilities": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/openbracket",
+            "custom/arch",
+            "idle_inhibitor",
+            "custom/wallchange",
+            "custom/closebracket"
+        ]
+    },
+    "custom/arch": {
+        "format": "󰣇",
+        "tooltip": false,
+        "on-click": "rofi -show drun"
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "rotate": 0,
+        "format-icons": {
+            "activated": "󰅶",
+            "deactivated": "󰛊"
+        },
+        "tooltip-format-activated": "Caffeine Mode Active",
+        "tooltip-format-deactivated": "Caffeine Mode Inactive"
+    },
+
+    "custom/wallchange": {
+        "format": "󰆊",
+        "rotate": 0,
+        "tooltip-format": "󰆊 switch wallpaper",
+        "on-click": "$HOME/.config/scripts/wallpaper_change.sh",
+        "interval": 3600,
+        "tooltip": true
+    },
+
+    "group/workspaces": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/openbracket",
+            "hyprland/workspaces",
+            "custom/closebracket"
+        ]
+    },
+    "hyprland/workspaces": {
+        "disable-scroll": false,
+        "rotate": 0,
+        "all-outputs": true,
+        "active-only": false,
+        "on-click": "activate",
+        "on-scroll-up": "hyprctl dispatch workspace -1",
+        "on-scroll-down": "hyprctl dispatch workspace +1",
+        "persistent-workspaces": {}
+    },
+
+    "mpris": {
+        "format": "[   {status_icon} | {dynamic} ]",
+        "dynamic-len": 40,
+        "status-icons": {
+            "playing": "▶",
+            "paused": "⏸",
+            "stopped": ""
+        },
+        "dynamic-order": ["artist"]
+    },
+
+    "group/windows": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/openbracket",
+            "hyprland/window",
+            "custom/closebracket"
+        ]
+    },
+    "hyprland/window": {
+        "format": " {}",
+        "rotate": 0,
+        "separate-outputs": true,
+        "max-length": 50
+    },
+
+    "group/cpuram": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/openbracket",
+            "cpu",
+            "custom/split",
+            "memory",
+            "custom/closebracket"
+        ]
+    },
+    "cpu": {
+        "format": "CPU:{usage}%",
+        "tooltip": false,
+        "interval": 2,
+        "on-click": "kitty -e htop"
+    },
+    "memory":{
+        "format": "RAM:{}%",
+        "tooltip": false,
+        "interval": 2,
+        "on-click": "kitty -e htop"
+    },
+
+    "group/brightvol": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/openbracket",
+            "backlight",
+            "custom/split",
+            "pulseaudio",
+            "custom/split",
+            "pulseaudio#microphone",
+            "custom/closebracket"
+        ]
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "rotate": 0,
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "on-scroll-up": "$HOME/.config/scripts/brightness.sh --inc",
+        "on-scroll-down": "$HOME/.config/scripts/brightness.sh --dec",
+        "min-length": 6
+    },
+    "pulseaudio": {
+        "format": "{icon}{volume}%",
+        "format-bluetooth": "{icon}{volume}% ",
+        "format-bluetooth-muted": " {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [" :", " :", " :"]
+        },
+
+        "rotate": 0,
+        "on-click": "pavucontrol -t 3",
+        "on-click-right": "$HOME/.config/scripts/volume.sh --toggle",
+        "on-scroll-up": "$HOME/.config/scripts/volume.sh --inc",
+        "on-scroll-down": "$HOME/.config/scripts/volume.sh --dec",
+        "scroll-step": 5
+    },
+    "pulseaudio#microphone": {
+        "format": "{source_volume}% {format_source}",
+        "rotate": 0,
+        "format-source": "",
+        "format-source-muted": "",
+        "on-click": "pavucontrol -t 4",
+        "on-click-right": "$HOME/.config/scripts/volume.sh --mic-toggle",
+        "on-scroll-up": "$HOME/.config/scripts/volume.sh --mic-inc",
+        "on-scroll-down": "$HOME/.config/scripts/volume.sh --mic-dec",
+        "scroll-step": 5
+    },
+
+    "group/system": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/openbracket",
+            "clock",
+            "privacy",
+            "custom/split",
+            "tray",
+            "custom/split",
+            "battery",
+            "custom/split",
+            "custom/cliphist",
+            "custom/split",
+            "custom/power",
+            "custom/closebracket"
+        ]
+    },
+    "clock": {
+        "rotate": 0,
+        "format": "{:%R 󰃭 %d·%m·%y}",
+        "tooltip-format": "<span>{calendar}</span>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "on-scroll": 1,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b>{}</b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+    "network": {
+        "interface": "wlan0",
+        "format-wifi": "{icon}",
+        "format-ethernet": "󰈀 LAN",
+        "format-disconnected": "󰖪",
+        "tooltip-format": "{ipaddr}\n{ssid} ({signalStrength}%)",
+        "on-click": "kitty -e nmtui",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
+    },
+    "privacy": {
+        "icon-size": 12,
+        "icon-spacing": 5,
+        "transition-duration": 250,
+        "modules": [
+            {
+                "type": "screenshare",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            },
+            {
+                "type": "audio-in",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            }
+        ]
+    },
+    "tray": {
+        "icon-size": 16,
+        "rotate": 0,
+        "spacing": 5,
+        "show-passive-items": true
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon} {capacity}%",
+        "rotate": 0,
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    "custom/cliphist": {
+        "format": " ",
+        "rotate": 0,
+        "tooltip-format": "󰅇 clipboard history",
+        "on-click": "sleep 0.1 && cliphist list | rofi -dmenu | cliphist decode | wl-copy && wtype -M ctrl -k v -m ctrl",
+        "tooltip": true
+    },
+    "custom/power": {
+        "format": "",
+        "rotate": 0,
+        "tooltip-format": " logout",
+        "on-click": "$HOME/.config/scripts/logoutlaunch.sh 2",
+        "on-click-right": "$HOME/.config/scripts/logoutlaunch.sh 1",
+        "tooltip": true
+    }
+}]
