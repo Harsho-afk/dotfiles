@@ -45,7 +45,7 @@ button {
 /* Islands */
 .modules-left {
   margin: 10px 0 0 10px;
-  padding: 0 0 0 7px;
+  padding: 0 7px 0 7px;
   background-color: @background;
   border: 2px solid @focused;
 }
@@ -70,6 +70,10 @@ button {
 #idle_inhibitor,
 #custom-wallchange {
   padding: 0 7px;
+  min-width: 16px;
+}
+#custom-wallchange {
+  padding: 0 9px 0 9px;
 }
 #custom-arch { border-radius: 8px; }
 #custom-arch:hover { color: @color1; }
