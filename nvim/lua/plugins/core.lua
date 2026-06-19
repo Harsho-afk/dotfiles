@@ -4,10 +4,8 @@ return {
         lazy = false,
         build = ":TSUpdate",
         config = function()
-            local configs = require("nvim-treesitter.configs")
-
-            configs.setup({
-                sync_install = false,
+            require("nvim-treesitter").setup({
+                ensure_installed = { "lua", "vim", "vimdoc", "python", "javascript" },
                 auto_install = true,
                 highlight = { enable = true },
                 indent = { enable = true },
@@ -73,22 +71,18 @@ return {
             vim.keymap.set("n", "<leader>b", function()
                 local bufnr = vim.api.nvim_get_current_buf()
                 local buffers = vim.fn.getbufinfo({ buflisted = 1 })
+
                 if #buffers > 1 then
-                    vim.cmd("bnext")
-                    if bufnr == vim.api.nvim_get_current_buf() then
-                        vim.cmd("bprevious")
-                    end
+                    vim.cmd("BufferLineCyclePrev")
                 else
                     vim.cmd("enew")
                 end
-                if vim.api.nvim_buf_is_valid(bufnr) then
-                    local buftype = vim.bo.buftype
 
-                    if buftype == "terminal" then
-                        vim.cmd("bdelete!")
-                    else
-                        vim.cmd("bdelete")
-                    end
+                local buftype = vim.api.nvim_get_option_value("buftype", { buf = bufnr })
+                if buftype == "terminal" then
+                    vim.cmd("bdelete! " .. bufnr)
+                else
+                    vim.cmd("bdelete " .. bufnr)
                 end
             end, { noremap = true, silent = true, desc = "Close Current Buffer" })
         end,
@@ -170,11 +164,13 @@ return {
         tag = "0.1.8",
         dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
-            local telescope = require("telescope")
             local actions = require("telescope.actions")
             local builtin = require("telescope.builtin")
             require("telescope").setup {
                 defaults = {
+                    preview = {
+                        treesitter = false,
+                    },
                     mappings = {
                         i = {
                             ["<C-q>"] = actions.close,

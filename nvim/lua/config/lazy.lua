@@ -48,7 +48,6 @@ vim.keymap.set("n", "<leader>n", function()
     vim.opt.relativenumber = not vim.opt.relativenumber:get()
 end, { desc = "Toggle relative line numbers" })
 
--- Setup lazy.nvim
 require("lazy").setup({
     spec = {
         { import = "plugins" },
