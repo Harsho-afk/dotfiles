@@ -163,20 +163,18 @@
         "min-length": 6
     },
     "pulseaudio": {
-        "format": "{icon}{volume}%",
-        "format-bluetooth": "{icon}{volume}% ",
-        "format-bluetooth-muted": " {icon}",
-        "format-muted": "",
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-muted": " {volume}%",
         "format-icons": {
             "headphone": "",
-            "hands-free": "",
-            "headset": "",
+            "hands-free": "",
+            "headset": "",
             "phone": "",
             "portable": "",
             "car": "",
-            "default": [" :", " :", " :"]
+            "default": ["", "", ""]
         },
-
         "rotate": 0,
         "on-click": "pavucontrol -t 3",
         "on-click-right": "$HOME/.config/scripts/volume.sh --toggle",
@@ -185,7 +183,7 @@
         "scroll-step": 5
     },
     "pulseaudio#microphone": {
-        "format": "{source_volume}% {format_source}",
+        "format": "{format_source} {source_volume}%",
         "rotate": 0,
         "format-source": "",
         "format-source-muted": "",
@@ -200,16 +198,14 @@
         "orientation": "horizontal",
         "modules": [
             "custom/openbracket",
+            "tray",
+            "custom/split",
             "clock",
             "privacy",
-            "custom/split",
-            "tray",
             "custom/split",
             "battery",
             "custom/split",
             "custom/cliphist",
-            "custom/split",
-            "custom/power",
             "custom/closebracket"
         ]
     },
@@ -236,15 +232,6 @@
             "on-scroll-down": "shift_down"
         }
     },
-    "network": {
-        "interface": "wlan0",
-        "format-wifi": "{icon}",
-        "format-ethernet": "󰈀 LAN",
-        "format-disconnected": "󰖪",
-        "tooltip-format": "{ipaddr}\n{ssid} ({signalStrength}%)",
-        "on-click": "kitty -e nmtui",
-        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
-    },
     "privacy": {
         "icon-size": 12,
         "icon-spacing": 5,
@@ -270,30 +257,22 @@
     },
     "battery": {
         "states": {
-            "good": 95,
+            "good": 80,
             "warning": 30,
             "critical": 20
         },
         "format": "{icon} {capacity}%",
         "rotate": 0,
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
         "format-alt": "{icon} {time}",
         "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
     "custom/cliphist": {
-        "format": " ",
+        "format": "",
         "rotate": 0,
         "tooltip-format": "󰅇 clipboard history",
         "on-click": "sleep 0.1 && cliphist list | rofi -dmenu | cliphist decode | wl-copy && wtype -M ctrl -k v -m ctrl",
-        "tooltip": true
-    },
-    "custom/power": {
-        "format": "",
-        "rotate": 0,
-        "tooltip-format": " logout",
-        "on-click": "$HOME/.config/scripts/logoutlaunch.sh 2",
-        "on-click-right": "$HOME/.config/scripts/logoutlaunch.sh 1",
         "tooltip": true
     }
 }]
