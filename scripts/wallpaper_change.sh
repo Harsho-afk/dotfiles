@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+env > /tmp/cron-env.txt
 
 WALLPAPER_DIR="$HOME/Pictures/Wallpaper"
 HISTORY_FILE="/tmp/.wallpaper_history"
