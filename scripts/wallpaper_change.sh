@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-env > /tmp/cron-env.txt
+export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+export HYPRLAND_INSTANCE_SIGNATURE=$(ls -t "$XDG_RUNTIME_DIR/hypr" | head -n 1)
 
 WALLPAPER_DIR="$HOME/Pictures/Wallpaper"
 HISTORY_FILE="/tmp/.wallpaper_history"
