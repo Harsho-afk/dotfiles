@@ -13,6 +13,14 @@ hl.window_rule({
     size = { 750, 550 },
 })
 
+hl.window_rule({
+    match = {
+        modal = true,
+    },
+    float = true,
+    center = true,
+})
+
 transperant = hl.window_rule({
     name = "transperant",
     match = {
