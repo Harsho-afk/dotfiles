@@ -94,8 +94,8 @@ hl.bind(mainMod .. " + SHIFT + S", hl.dsp.workspace.toggle_special("special"),
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.move({ workspace = "special" }),
     { description = "Move window to special workspace" })
 
-hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "r+1" }), { description = "Go to next workspace" })
-hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "r-1" }), { description = "Go to previous workspace" })
+hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "r+1" }), { description = "Go to next workspace" })
+hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "r-1" }), { description = "Go to previous workspace" })
 hl.bind(mainMod .. " + Z", function()
     if transperant:is_enabled() then
         transperant:set_enabled(false)
