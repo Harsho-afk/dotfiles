@@ -42,7 +42,7 @@ hl.config({
 
     input = {
         kb_layout = "us",
-        -- kb_options = "caps:swapescape",
+        kb_options = "caps:swapescape",
         numlock_by_default = true,
     },
 
