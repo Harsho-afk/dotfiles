@@ -114,3 +114,6 @@ hl.bind(mainMod .. " + SHIFT + up", hl.dsp.layout("togglesplit"),
     { repeating = true, description = "Toggle split orientation" })
 hl.bind(mainMod .. " + SHIFT + down", hl.dsp.layout("swapsplit"),
     { repeating = true, description = "Swap split direction" })
+
+hl.bind("mouse:276", hl.dsp.exec_cmd(scripts .. "/toggle-hold.sh"),
+    { description = "Toggle left-click hold" })
