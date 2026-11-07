@@ -79,7 +79,7 @@ hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "d" }), { repeating = t
 
 hl.bind(mainMod .. " + C", hl.dsp.window.close("activewindow"), { repeating = true, description = "Close active window" })
 hl.bind("ALT + F4", hl.dsp.window.close("activewindow"), { description = "Close active window" })
-hl.bind(mainMod .. " + V", hl.dsp.window.float("toggle", "activewindow"), { description = "Toggle floating mode" })
+hl.bind(mainMod .. " + V", hl.dsp.window.float({ "activewindow", "toggle" }), { description = "Toggle floating mode" })
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { description = "Drag window" })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { description = "Resize window" })
 hl.bind(mainMod .. " + CTRL + F",
