@@ -41,6 +41,8 @@ vim.keymap.set("n", "<A-h>", ":split<CR>", { noremap = true, silent = true, desc
 vim.keymap.set("n", "<A-v>", ":vsplit<CR>", { noremap = true, silent = true, desc = "Split Window Vertically" })
 vim.keymap.set("n", "<A-h>t", ":split | terminal<CR>", { noremap = true, silent = true, desc = "Open Terminal Horizontally" })
 vim.keymap.set("n", "<A-v>t", ":vsplit | terminal<CR>", { noremap = true, silent = true, desc = "Open Terminal Vertically" })
+vim.keymap.set("n", "<leader>/", "gcc", { remap = true, desc = "Toggle comment line" })
+vim.keymap.set("x", "<leader>/", "gc", { remap = true, desc = "Toggle comment selection" })
 
 vim.opt.number = true
 vim.opt.relativenumber = true
